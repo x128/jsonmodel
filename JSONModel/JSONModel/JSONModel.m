@@ -371,7 +371,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
                 JSONModelError* initErr = nil;
                 id value = [[property.type alloc] initWithDictionary: jsonValue error:&initErr];
 
-                if (!value) {
+                if (!value || [jsonValue isEqual:@"0 elements"]) {
                     //skip this property, continue with next property
                     if (property.isOptional || !validation) continue;
 
